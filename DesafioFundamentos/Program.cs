@@ -6,12 +6,20 @@ Console.OutputEncoding = System.Text.Encoding.UTF8;
 decimal precoInicial = 0;
 decimal precoPorHora = 0;
 
-Console.WriteLine("Seja bem vindo ao sistema de estacionamento!\n" +
-                  "Digite o preço inicial:");
-precoInicial = Convert.ToDecimal(Console.ReadLine());
+Console.Write("Seja bem vindo ao sistema de estacionamento!\n" +
+                  "Digite o preço inicial: ");
+// Recebe o valor do preço inicial e do preço por hora em loop se não for um valor valido
+while (!decimal.TryParse(Console.ReadLine(), out precoInicial))
+{
+    Console.WriteLine("Valor inválido, digite novamente: ");
+}
 
-Console.WriteLine("Agora digite o preço por hora:");
-precoPorHora = Convert.ToDecimal(Console.ReadLine());
+Console.Write("Agora digite o preço por hora: ");
+// Recebe o valor do preço por hora em loop se não for um valor valido
+while (!decimal.TryParse(Console.ReadLine(), out precoPorHora))
+{
+    Console.WriteLine("Valor inválido, digite novamente: ");
+}
 
 // Instancia a classe Estacionamento, já com os valores obtidos anteriormente
 Estacionamento es = new Estacionamento(precoInicial, precoPorHora);
@@ -27,7 +35,7 @@ while (exibirMenu)
     Console.WriteLine("1 - Cadastrar veículo");
     Console.WriteLine("2 - Remover veículo");
     Console.WriteLine("3 - Listar veículos");
-    Console.WriteLine("4 - Encerrar");
+    Console.WriteLine("4 - Encerrar\n");
 
     switch (Console.ReadLine())
     {
@@ -52,7 +60,7 @@ while (exibirMenu)
             break;
     }
 
-    Console.WriteLine("Pressione uma tecla para continuar");
+    Console.WriteLine("\nPressione enter para continuar");
     Console.ReadLine();
 }
 
